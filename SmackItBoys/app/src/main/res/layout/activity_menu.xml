@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#6A5ACD"
+    tools:context="br.com.isaque.smackitboys.Menu">
+    <TextView
+        android:textColor="#00BFFF"
+        android:id="@+id/NomeDoJogoMenu"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp"
+        android:text="Smack It Boys"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/play"
+        android:textColor="#1E90FF"
+        android:background="#00FFFFFF"
+        android:textSize="80dp"
+        android:text="Play"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/NomeDoJogoMenu"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/instructions"
+        android:textColor="#1E90FF"
+        android:background="#00FFFFFF"
+        android:textSize="50dp"
+        android:text="Instructions"
+        android:layout_below="@id/play"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/exit"
+        android:textColor="#1E90FF"
+        android:background="#00FFFFFF"
+        android:textSize="50dp"
+        android:text="Exit"
+        android:layout_below="@id/instructions"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

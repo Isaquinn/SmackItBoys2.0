@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#6A5ACD"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    <TextView
+        android:textSize="32dp"
+        android:text="Smack It Boys"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/NomeDoJogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/NomeDoJogo"
+        android:text="Score: 20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/score" />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/NomeDoJogo"
+        android:text="Lifes: 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lifes" />
+    <TextView
+        android:layout_marginLeft="235dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/NomeDoJogo"
+        android:text="HighScore: 100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/highscore" />
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem1"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/score"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <ImageView
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem2"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/score"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem3"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/imagem1"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <ImageView
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem4"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/imagem2"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem5"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/imagem3"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <ImageView
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imagem6"
+        android:background="@drawable/rosquinha"
+        android:layout_below="@id/imagem4"
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
+    <TextView
+        android:id="@+id/telatempo"
+        android:textSize="80dp"
+        android:text="3"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
