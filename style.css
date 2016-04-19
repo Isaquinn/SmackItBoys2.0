@@ -1,0 +1,7 @@
+body,ul{padding:0;margin:0; list-style:none};
+#general{overflow:hidden;}
+#general #top{width:1018px;margin:0 auto;overflow:hidden;}
+#general #top #logo,menutopo{float:left; width:400px;}
+#general #top #logo{margin:hidden:350px;}
+#general #top #menutopo{overflow:hidden;background:#000}
+#general #top #menutopo li{float:left;padding:5px;}

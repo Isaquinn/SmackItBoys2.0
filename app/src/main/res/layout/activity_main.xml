@@ -99,6 +99,12 @@
         android:id="@+id/novohighscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-
+    <ImageView
+        android:background="@drawable/luva"
+        android:id="@+id/luva"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/telatempo"
+        android:layout_alignRight="@+id/imagem1"
+        android:layout_alignEnd="@+id/imagem1" />
 </RelativeLayout>

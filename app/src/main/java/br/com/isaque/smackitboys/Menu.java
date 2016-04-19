@@ -30,6 +30,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         play.setOnClickListener(this);
         instruction.setOnClickListener(this);
         exit.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
@@ -49,5 +50,9 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         {
             moveTaskToBack(true);
         }
+    }
+    public void onBackPressed()
+    {
+        moveTaskToBack(true);
     }
 }

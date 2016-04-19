@@ -46,4 +46,9 @@ public class Instructions extends AppCompatActivity implements View.OnClickListe
             overridePendingTransition(R.animator.slide_in_topright, R.animator.slide_out_topright);
         }
     }
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        // optional depending on your needs
+    }
 }

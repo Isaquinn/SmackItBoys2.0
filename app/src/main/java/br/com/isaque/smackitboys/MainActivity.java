@@ -8,7 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable{
     //region Variáveis
     private ImageView imagem1, imagem2, imagem3, imagem4, imagem5, imagem6;
     private TextView nomedojogo,score,vidas,highscore;
@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Vibrator vibrator;
     int timvibration;
     private Handler myhandler;
+    private  ImageView luva;
+    float dX, dY;
+    private MotionEvent motionEvent;
+
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highscore.setTypeface(custom_font);
         //endregion
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        luva = (ImageView)findViewById(R.id.luva);
         //run();
     }
+
     public void onPause()
     {
         super.onPause();
@@ -94,11 +100,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         run();
     }
+    public  boolean onTouchEvent(MotionEvent motionEvent)
+    {
+         dX = motionEvent.getX();
+         dY = motionEvent.getY();
+         return  true;
+    }
     @Override
     public void onClick(View v) {
         if (time2 <= 0) {
             if (v.getId() == R.id.imagem1) {
                 if (numero == 0) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem1.getX());
+                    luva.setY(imagem1.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -118,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem2) {
                 if (numero == 1) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem2.getX());
+                    luva.setY(imagem2.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -137,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem3) {
                 if (numero == 2) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem3.getX());
+                    luva.setY(imagem3.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -156,6 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem4) {
                 if (numero == 3) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem4.getX());
+                    luva.setY(imagem4.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -175,6 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem5) {
                 if (numero == 4) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem5.getX());
+                    luva.setY(imagem5.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -195,6 +222,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem6) {
                 if (numero == 5) {
+                    luva.setVisibility(View.VISIBLE);
+                    luva.setX(imagem6.getX());
+                    luva.setY(imagem6.getY());
                     time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
@@ -220,6 +250,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void run()
     {
+        //region control of boxer
+        runOnUiThread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                luva.setVisibility(View.INVISIBLE);
+            }
+        });
+        //endregion
+        //region control of vibration
         final Timer timertimer = new Timer();
         timertimer.schedule(new TimerTask() {
             @Override
@@ -236,6 +277,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         },0,1000);
+        //endregion
         timer2 = new Timer();
         timer2.schedule(new TimerTask() {
             @Override
@@ -244,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        luva.setVisibility(View.INVISIBLE);
                         if (timecontroladordenivel == 25) {
                             time = 4;
                         } else if (timecontroladordenivel == 20) {
@@ -253,7 +296,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                         time2 -= 1;
-                        Log.d("Tempo", String.valueOf(time2));
                         TimeCount.setText(String.valueOf(time2));
                         TimeCount.setTypeface(custom_font);
                         if(time2 == 0){TimeCount.setText("Go");}
@@ -272,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             }
                                             if (valorvidas == 0) {
                                                 Intent intent = new Intent(MainActivity.this, GameOver.class);
-                                                startActivityForResult(intent, 0);
+                                                startActivityForResult(intent, 1);
                                                 overridePendingTransition(R.animator.slide_in_right, R.animator.slide_out_right);
                                                 valorvidas = 3;
                                             }
@@ -450,5 +492,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }, 0, 1000);
 
 
+    }
+    public void onBackPressed()
+    {
+        // code here to show dialog
+          // optional depending on your needs
     }
 }

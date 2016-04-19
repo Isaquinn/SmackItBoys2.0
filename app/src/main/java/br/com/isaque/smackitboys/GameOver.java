@@ -43,4 +43,9 @@ public class GameOver extends AppCompatActivity implements View.OnClickListener 
             overridePendingTransition(R.animator.slide_in_right, R.animator.slide_out_right);
         }
     }
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        // optional depending on your needs
+    }
 }
