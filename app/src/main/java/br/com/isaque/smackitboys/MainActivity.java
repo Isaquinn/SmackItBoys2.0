@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
     //region Variáveis
@@ -25,10 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Random random2;
     private Timer timer;
     private Timer timer2;
+    private  int time3 = 5;
     private int time2 = 4;
-    private int time = 5;
-    private int tempo = time;
-    private int nivel = 1;
+    private int time = 3;
     private int numero, imagemaleatoria;
     int timecontroladordenivel = 30;
     private Typeface custom_font;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean GoToGame = false;
     private TextView TimeCount;
     private MediaPlayer  soco;
+    private TextView novohighscore;
+    private Vibrator vibrator;
+    int timvibration;
+    private Handler myhandler;
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         vidas = (TextView)findViewById(R.id.lifes);
         highscore = (TextView)findViewById(R.id.highscore);
         TimeCount = (TextView)findViewById(R.id.telatempo);
+        novohighscore = (TextView)findViewById(R.id.novohighscore);
+        novohighscore.setTypeface(custom_font);
+        novohighscore.setVisibility(View.INVISIBLE);
         //endregion
         //region Não sei como separa, me desculpe
         custom_font = Typeface.createFromAsset(getAssets(), "fonts/orange.ttf");
@@ -73,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highscore.setText(String.valueOf("HighScore: " + valorhighscore));
         highscore.setTypeface(custom_font);
         //endregion
+        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
         //run();
-
     }
     public void onPause()
     {
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (time2 <= 0) {
             if (v.getId() == R.id.imagem1) {
                 if (numero == 0) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imagem6.setBackgroundResource(R.drawable.rosquinha);
                     numero = random.nextInt(6);
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -110,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem2) {
                 if (numero == 1) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imagem6.setBackgroundResource(R.drawable.rosquinha);
                     numero = random.nextInt(6);
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -129,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem3) {
                 if (numero == 2) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imagem6.setBackgroundResource(R.drawable.rosquinha);
                     numero = random.nextInt(6);
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -148,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem4) {
                 if (numero == 3) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -158,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imagem6.setBackgroundResource(R.drawable.rosquinha);
                     numero = random.nextInt(6);
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -167,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem5) {
                 if (numero == 4) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -178,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     numero = random.nextInt(6);
 
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -187,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } else if (v.getId() == R.id.imagem6) {
                 if (numero == 5) {
-                    time = 4;
+                    time = 3;
                     soco.start();
                     imagem1.setBackgroundResource(R.drawable.rosquinha);
                     imagem2.setBackgroundResource(R.drawable.rosquinha);
@@ -198,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     numero = random.nextInt(6);
 
                     if (imagemaleatoria != 0) {
-                        valorscore += 15;
+                        valorscore += 100;
                     } else {
                         valorvidas -= 1;
                         valorscore -= 10;
@@ -208,68 +216,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
     @Override
     public void run()
     {
+        final Timer timertimer = new Timer();
+        timertimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(valorscore > valorhighscore)
+                {
+                    timvibration += 1;
+                    vibrator.vibrate(1000);
+                    if(timvibration >= 2)
+                    {
+                        vibrator.cancel();
+                    }
+                }
+            }
+
+        },0,1000);
         timer2 = new Timer();
         timer2.schedule(new TimerTask() {
             @Override
             public void run() {
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(timecontroladordenivel == 25)
-                        {
+                        if (timecontroladordenivel == 25) {
                             time = 4;
-                        }
-                        else if (timecontroladordenivel == 20)
-                        {
+                        } else if (timecontroladordenivel == 20) {
                             time = 3;
-                        }
-                        else if (timecontroladordenivel == 10)
-                        {
-                           time = 2;
+                        } else if (timecontroladordenivel == 10) {
+                            time = 2;
                         }
 
                         time2 -= 1;
                         Log.d("Tempo", String.valueOf(time2));
                         TimeCount.setText(String.valueOf(time2));
                         TimeCount.setTypeface(custom_font);
-                        if(time2 == 0)
-                        {
-                            TimeCount.setText("Go");
+                        if(time2 == 0){TimeCount.setText("Go");}
+                        if (time2 == -1) {
+
                             TimeCount.setVisibility(View.INVISIBLE);
                             timer = new Timer();
-                            timer.schedule(new TimerTask()
-                            {
+                            timer.schedule(new TimerTask() {
                                 @Override
-                                public void run()
-                                {
-                                    runOnUiThread(new Runnable()
-                                    {
+                                public void run() {
+                                    runOnUiThread(new Runnable() {
                                         @Override
-                                        public void run()
-                                        {
-                                            if(valorvidas == 0)
-                                            {
-                                                Intent intent = new Intent(MainActivity.this, GameOver.class );
+                                        public void run() {
+                                            if (valorscore <= 0) {
+                                                valorscore = 0;
+                                            }
+                                            if (valorvidas == 0) {
+                                                Intent intent = new Intent(MainActivity.this, GameOver.class);
                                                 startActivityForResult(intent, 0);
                                                 overridePendingTransition(R.animator.slide_in_right, R.animator.slide_out_right);
                                                 valorvidas = 3;
                                             }
-                                            if(valorscore > valorhighscore)
-                                            {
-                                                sharedPref = getSharedPreferences("LevelScores",Context.MODE_PRIVATE);
+                                            if (valorscore > valorhighscore) {
+                                                sharedPref = getSharedPreferences("LevelScores", Context.MODE_PRIVATE);
                                                 editor = sharedPref.edit();
-                                                editor.putInt("score",valorscore);
+                                                editor.putInt("score", valorscore);
                                                 editor.commit();
+                                                novohighscore.setVisibility(View.VISIBLE);
+                                                novohighscore.setTypeface(custom_font);
                                             }
                                             score.setText(String.valueOf("Score: " + String.valueOf(valorscore)));
                                             score.setTypeface(custom_font);
                                             vidas.setText(String.valueOf("Lifes: " + String.valueOf(valorvidas)));
                                             vidas.setTypeface(custom_font);
-                                            if (time == 4)
-                                            {
+                                            if (time == 3) {
                                                 imagem1.setBackgroundResource(R.drawable.rosquinha);
                                                 imagem2.setBackgroundResource(R.drawable.rosquinha);
                                                 imagem3.setBackgroundResource(R.drawable.rosquinha);
@@ -278,18 +297,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 imagem6.setBackgroundResource(R.drawable.rosquinha);
                                             }
                                             time -= 1;
-                                            if(time == 0)
-                                            {
+                                            if (time == 0) {
                                                 numero = random.nextInt(6);
                                                 imagemaleatoria = random2.nextInt(6);
-                                                time = 4;
+                                                time = 3;
 
                                             }
-                                            switch (numero)
-                                            {
+                                            switch (numero) {
                                                 case 0:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem1.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -311,8 +327,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     }
                                                     break;
                                                 case 1:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem2.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -334,8 +349,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     }
                                                     break;
                                                 case 2:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem3.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -357,8 +371,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     }
                                                     break;
                                                 case 3:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem4.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -380,8 +393,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     }
                                                     break;
                                                 case 4:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem5.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -403,8 +415,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     }
                                                     break;
                                                 case 5:
-                                                    switch (imagemaleatoria)
-                                                    {
+                                                    switch (imagemaleatoria) {
                                                         case 0:
                                                             imagem6.setBackgroundResource(R.drawable.coracao);
                                                             break;
@@ -429,7 +440,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         }
                                     });
                                 }
-                            }, 0, 1000);;
+                            }, 0, 1000);
+                            ;
                         }
                     }
                 });
