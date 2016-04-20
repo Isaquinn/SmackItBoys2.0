@@ -28,7 +28,7 @@ public class Instructions extends AppCompatActivity implements View.OnClickListe
         NomeInstrucoes = (TextView)findViewById(R.id.telainstrucao);
         NomeInstrucoes.setTypeface(custom_font);
         TextoInstrucoes = (TextView)findViewById(R.id.textoinstrucoes);
-        TextoInstrucoes.setText("       Click only on the boys to earn points. \n\n       Do not click in the heart you will lose a life. \n\n      You only have only three lives, if you lose all lose the game.");
+        TextoInstrucoes.setText("       Click only on the boys to earn 100 points. \n\n       Do not click in the heart you will lose a life and lose  300 points. \n\n      You only have only three lives, if you lose all lose the game.");
         TextoInstrucoes.setTypeface(custom_font);
     }
     @Override

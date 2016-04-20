@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private  ImageView luva;
     float dX, dY;
     private MotionEvent motionEvent;
+    private int timecoracao = 8;
 
     //endregion
     @Override
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         luva = (ImageView)findViewById(R.id.luva);
         //run();
     }
-
     public void onPause()
     {
         super.onPause();
@@ -102,8 +102,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public  boolean onTouchEvent(MotionEvent motionEvent)
     {
-         dX = motionEvent.getX();
-         dY = motionEvent.getY();
+        switch (motionEvent.getAction())
+        {
+            case MotionEvent.ACTION_DOWN :
+                dX = motionEvent.getX();
+                dY = motionEvent.getY();
+        }
+
          return  true;
     }
     @Override
@@ -127,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
@@ -171,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
@@ -193,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
@@ -216,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
@@ -239,14 +244,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         valorscore += 100;
                     } else {
                         valorvidas -= 1;
-                        valorscore -= 10;
+                        valorscore -= 300;
                     }
                     imagemaleatoria = random2.nextInt(6);
                 }
             }
         }
     }
-
     @Override
     public void run()
     {
@@ -338,7 +342,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 imagem5.setBackgroundResource(R.drawable.rosquinha);
                                                 imagem6.setBackgroundResource(R.drawable.rosquinha);
                                             }
+                                            timecoracao -= 1;
                                             time -= 1;
+                                            if(timecoracao == 0)
+                                            {
+                                                int selecao = random.nextInt(4);
+                                                if(selecao == 1)
+                                                {
+                                                    imagemaleatoria = 0;
+                                                }
+                                                timecoracao = 8;
+                                            }
                                             if (time == 0) {
                                                 numero = random.nextInt(6);
                                                 imagemaleatoria = random2.nextInt(6);
